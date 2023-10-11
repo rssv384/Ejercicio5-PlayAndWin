@@ -1,5 +1,63 @@
 @import '../assets/scss/variables';
 
+// #region FILTROS
+#filter-section {
+	background-color: $background-color;
+	padding: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	align-items: center;
+}
+
+input[type='text'],
+input[type='number'] {
+	flex-grow: 1;
+	min-width: 200px;
+	font-size: 1rem;
+	padding: 1rem;
+	border: 1px solid $primary-color;
+	border-radius: 10px;
+}
+
+input[type='text']:focus,
+input[type='text']:hover,
+input[type='text']:active,
+input[type='number']:focus,
+input[type='number']:hover,
+input[type='number']:active {
+	border: 1px solid $secondary-color;
+}
+
+button {
+	padding: 0.8rem;
+	font-size: 1rem;
+	border: 1px solid $primary-color;
+	border-radius: 10px;
+	width: auto;
+	cursor: pointer;
+}
+
+button#apply-filters {
+	background-color: $primary-color;
+	color: $font-color-light;
+}
+
+button#apply-filters:hover {
+	background-color: $secondary-color;
+}
+
+button#reset-filters {
+	background-color: $background-color;
+	color: $primary-color;
+}
+
+button#reset-filters:hover {
+	background-color: lightgray;
+}
+// #endregion
+
+// #region CATÁLOGO
 .cards {
 	display: flex;
 	flex-wrap: wrap;
@@ -50,20 +108,15 @@
 
 .card-btn {
 	color: $font-color-light;
-	padding: 0.8rem;
-	font-size: 1rem;
-	border-radius: 10px;
 	font-weight: 400;
 	display: block;
-	width: 100%;
-	cursor: pointer;
 	border: 1px solid $background-color;
 	background: transparent;
 }
 
 .card-btn:hover {
 	background-color: $background-color;
-	color: $font-color;
+	color: $primary-color;
 }
 
 .card-content {
@@ -84,8 +137,8 @@
 	padding: 1rem;
 	background: linear-gradient(
 		to bottom left,
-		$secondary-color 20%,
-		$tertiary-color 80%
+		$primary-color 30%,
+		$secondary-color 70%
 	);
 	color: $font-color-light;
 	text-align: center;
@@ -124,3 +177,4 @@
 	transition: all 0.5s ease-in-out;
 	clip-path: circle(75%);
 }
+// #endregion

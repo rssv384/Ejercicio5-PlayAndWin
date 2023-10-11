@@ -1,3 +1,53 @@
+hr {
+  border: 1px solid #5c2d8b; }
+
+#filter-section {
+  background-color: #f2f2f2;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center; }
+
+input[type='text'],
+input[type='number'] {
+  flex-grow: 1;
+  min-width: 200px;
+  font-size: 1rem;
+  padding: 1rem;
+  border: 1px solid #5c2d8b;
+  border-radius: 10px; }
+
+input[type='text']:focus,
+input[type='text']:hover,
+input[type='text']:active,
+input[type='number']:focus,
+input[type='number']:hover,
+input[type='number']:active {
+  border: 1px solid #8c2a8d; }
+
+button {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #5c2d8b;
+  border-radius: 10px;
+  width: auto;
+  cursor: pointer; }
+
+button#apply-filters {
+  background-color: #5c2d8b;
+  color: #ffffff; }
+
+button#apply-filters:hover {
+  background-color: #8c2a8d; }
+
+button#reset-filters {
+  background-color: #f2f2f2;
+  color: #5c2d8b; }
+
+button#reset-filters:hover {
+  background-color: lightgray; }
+
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -39,19 +89,14 @@
 
 .card-btn {
   color: #ffffff;
-  padding: 0.8rem;
-  font-size: 1rem;
-  border-radius: 10px;
   font-weight: 400;
   display: block;
-  width: 100%;
-  cursor: pointer;
   border: 1px solid #f2f2f2;
   background: transparent; }
 
 .card-btn:hover {
   background-color: #f2f2f2;
-  color: #0d0d0d; }
+  color: #5c2d8b; }
 
 .card-content {
   position: absolute;
@@ -66,7 +111,7 @@
   box-sizing: border-box;
   clip-path: circle(0% at 100% 100%);
   padding: 1rem;
-  background: linear-gradient(to bottom left, #5c2d8b 20%, #8c2a8d 80%);
+  background: linear-gradient(to bottom left, #5c2d8b 30%, #8c2a8d 70%);
   color: #ffffff;
   text-align: center; }
 

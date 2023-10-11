@@ -134,8 +134,63 @@ function formatCurrency(number) {
 
 // #endregion
 
+//#region FILTROS
+
+// Función para inicializar los EventListener de los botones de los filtros
+function initButtonsHandler() {
+	document.getElementById('filter-form').addEventListener('submit', (event) => {
+		event.preventDefault();
+		applyFilters();
+	});
+}
+
+// Funcion que controla la aplicación de los filtros al catálogo y su posterior
+// despliegue.
+function applyFilters() {
+	const filterTitle = document.getElementById('title').value.toLowerCase();
+	const filterPlatform = document
+		.getElementById('platform')
+		.value.toLowerCase();
+	const filterRating = parseFloat(document.getElementById('rating').value);
+	const filterMinPrice = parseFloat(document.getElementById('min-price').value);
+	const filterMaxPrice = parseFloat(document.getElementById('max-price').value);
+
+	const filteredVideogames = filterVideogames(
+		catalogList,
+		filterTitle,
+		filterPlatform,
+		filterRating,
+		filterMinPrice,
+		filterMaxPrice
+	);
+
+	displayCatalog(filteredVideogames);
+}
+
+// Funcion para el filtrado de videojuegos.
+function filterVideogames(
+	videogames,
+	title,
+	platform,
+	rating,
+	minPrice,
+	maxPrice
+) {
+	return videogames.filter(
+		(videogame) =>
+			(!title || videogame.title.toLowerCase().includes(title)) &&
+			(!platform || videogame.platform.toLowerCase().includes(platform)) &&
+			(!rating || videogame.rating >= rating) &&
+			(!minPrice || videogame.price >= minPrice) &&
+			(!maxPrice || videogame.price <= maxPrice)
+	);
+}
+
+//#endregion
+
 //#region INIT FUNCIONALIDAD
 
 displayCatalog(catalogList);
+initButtonsHandler();
 
 //#endregion
