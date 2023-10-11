@@ -20,7 +20,7 @@ Tras instalar _Node.js_ y _npm_ instalados, podrás instalar y configurar el pro
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/
+git clone https://github.com/rssv384/Ejercicio5-PlayAndWin.git
 ```
 
 2. Navega al directorio raíz del proyecto:

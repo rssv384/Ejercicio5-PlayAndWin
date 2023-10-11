@@ -15,20 +15,15 @@ body {
 }
 
 main {
-	background-color: $workarea-background-color;
-	box-shadow: rgba(255, 255, 255, 0.25) 0 0 100px 0;
+	background-color: $background-color;
 	min-height: $workarea-min-height;
-	border-radius: 8px;
-	padding: 1rem 2rem;
-	margin: 1.5rem;
+	margin: 2rem 2rem;
 }
 
 section {
 	display: block;
 	/* Section height = Viewport height - header height */
-	height: calc(100vh - 80px);
-
-	scroll-margin-top: 80px;
+	height: 100vh;
 	padding: 50px 80px;
 }
 
@@ -36,8 +31,8 @@ h1 {
 	font-size: 4rem;
 	margin-bottom: 20px;
 	text-align: center;
+	text-transform: uppercase;
 }
-@import 'variables';
 
 hr {
 	border: 1px solid $primary-color;
