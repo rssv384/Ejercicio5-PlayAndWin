@@ -74,6 +74,9 @@ Ejercicio5-PlayAndWin/    # Carpeta principal del proyecto
 │   │    ├── script.js    # JavaScript de la página de ventas
 │   │    └── styles.scss  # Estilos SCSS de la página de ventas
 │   │
+│   ├── shared/           # Carpeta con recursos compartidos
+│   │    └── utils.js     # JavaScript con funciones y utilidades compartidas
+│   │
 │   │
 │   └─── index.html       # Homepage
 │
