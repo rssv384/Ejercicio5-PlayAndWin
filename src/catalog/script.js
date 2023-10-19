@@ -1,89 +1,65 @@
+// #region GLOBAL VARIABLES
+const imagePath = `../assets/img/catalog/`;
+let catalogList = [];
+
+// #endregion
+
 // #region DATA MODELS
 
 // Definir clase Videogame
 class Videogame {
-	constructor(id, title, price, platform, rating, cover) {
+	constructor(id, title, price, platform, rating, cover_img) {
 		this.id = id;
 		this.title = title;
 		this.price = price;
 		this.platform = platform;
 		this.rating = rating;
-		this.cover = cover;
+		this.cover_img = cover_img;
 	}
 }
-
-// Crear objetos de la clase Videogame
-const videogame_1 = new Videogame(
-	1,
-	'The Elder Scrolls V: Skyrim Special Edition',
-	600,
-	'PC, Xbox One, PlayStation 4',
-	9.1,
-	'skyrim_se.png'
-);
-
-const videogame_2 = new Videogame(
-	2,
-	"Baldur's Gate 3",
-	1299,
-	'PC',
-	9.7,
-	'baldurs_gate_3.png'
-);
-
-const videogame_3 = new Videogame(
-	3,
-	'Dragon Age: Origins - Ultimate Edition',
-	449,
-	'PC',
-	9,
-	'dragon_age_origins_ue.png'
-);
-
-// Guardar objetos en un array
-const catalogList = [videogame_1, videogame_2, videogame_3];
 
 // #endregion
 
 // #region VIEW MODEL
 
-// Función para el despliegue del array de videogames en un Card Grid Layout
-function displayCatalog(videogames) {
+// Función que controla el despliegue de datos o mensajes en la vista del
+// catálogo
+function displayContent(videogames) {
 	clearGrid();
 
 	showLoadingMessage();
 
-	setTimeout(() => {
-		if (videogames.length === 0) {
-			showNotFoundMessage();
-		} else {
-			hideMessage();
+	if (videogames.length === 0) {
+		showNotFoundMessage();
+	} else {
+		hideMessage();
+		displayCatalog(videogames);
+	}
+}
 
-			const videogameList = document.getElementById('catalog');
+// Función para el despliegue del array de videojuegos en un Card Grid Layout
+function displayCatalog(videogames) {
+	const videogameList = document.getElementById('catalog');
 
-			const imagePath = `../assets/img/catalog/`;
+	videogames.forEach((videogame) => {
+		const listItem = document.createElement('li');
+		listItem.setAttribute('class', 'cards-item');
 
-			videogames.forEach((videogame) => {
-				const listItem = document.createElement('li');
-				listItem.setAttribute('class', 'cards-item');
-
-				listItem.innerHTML = `
+		listItem.innerHTML = `
 					<div class="card">
-						<div class="card-image"><img src="${imagePath + videogame.cover}"></div>
+						<div class="card-image"><img src="${imagePath + videogame.cover_img}"></div>
 						<div class="card-content">
 							<p class="card-title">${videogame.title}</p>
-							<p class="card-platform">${videogame.platform}</p>
+							<p class="card-platform">${videogame.platform.join(' | ')}</p>
 							<p class="card-rating">${videogame.rating}<span class="star">&#9733;</span></p>
 							<p class="card-price">${formatCurrency(videogame.price)}</p>
-							<button class="card-btn">COMPRAR</button>
+							<button class="card-btn">VER MÁS</button>
 						</div>
 					</div>
 				`;
 
-				videogameList.appendChild(listItem);
-			});
-		}
-	}, 2000);
+		videogameList.appendChild(listItem);
+	});
 }
 
 // Funcion que limpia el grid del catálogo
@@ -127,6 +103,13 @@ function initButtonsHandler() {
 		event.preventDefault();
 		applyFilters();
 	});
+
+	document.getElementById('reset-filters').addEventListener('click', () => {
+		document
+			.querySelectorAll('input.filter-field')
+			.forEach((input) => (input.value = ''));
+		applyFilters();
+	});
 }
 
 // Funcion que controla la aplicación de los filtros al catálogo y su posterior
@@ -149,7 +132,7 @@ function applyFilters() {
 		filterMaxPrice
 	);
 
-	displayCatalog(filteredVideogames);
+	displayContent(filteredVideogames);
 }
 
 // Funcion para el filtrado de videojuegos.
@@ -164,7 +147,10 @@ function filterVideogames(
 	return videogames.filter(
 		(videogame) =>
 			(!title || videogame.title.toLowerCase().includes(title)) &&
-			(!platform || videogame.platform.toLowerCase().includes(platform)) &&
+			(!platform ||
+				videogame.platform.findIndex((item) =>
+					item.toLowerCase().includes(platform)
+				) >= 0) &&
 			(!rating || videogame.rating >= rating) &&
 			(!minPrice || videogame.price >= minPrice) &&
 			(!maxPrice || videogame.price <= maxPrice)
@@ -173,9 +159,33 @@ function filterVideogames(
 
 //#endregion
 
+// #region API USAGE
+// Función que realiza la petición GET a la API para obtener los datos sobre
+// los videojuegos del catálogo
+function loadData() {
+	fetchAPI('catalog', 'GET').then((data) => {
+		// Mapear datos a objetos Videogame
+		catalogList = data.map((item) => {
+			return new Videogame(
+				item.id,
+				item.title,
+				item.price,
+				item.platform,
+				item.rating,
+				item.cover_img
+			);
+		});
+
+		// Mostrar datos en la vista del catálogo
+		displayContent(catalogList);
+	});
+}
+// #endregion
+
 //#region INIT FUNCIONALIDAD
 
-displayCatalog(catalogList);
 initButtonsHandler();
+showLoadingMessage();
+loadData();
 
 //#endregion

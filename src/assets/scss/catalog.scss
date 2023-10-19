@@ -1,62 +1,4 @@
-@import '../assets/scss/variables';
-
-// #region FILTROS
-#filter-section {
-	background-color: $background-color;
-	padding: 2rem;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
-	align-items: center;
-}
-
-input[type='text'],
-input[type='number'] {
-	flex-grow: 1;
-	min-width: 200px;
-	font-size: 1rem;
-	padding: 1rem;
-	border: 1px solid $primary-color;
-	border-radius: 10px;
-}
-
-input[type='text']:focus,
-input[type='text']:hover,
-input[type='text']:active,
-input[type='number']:focus,
-input[type='number']:hover,
-input[type='number']:active {
-	border: 1px solid $secondary-color;
-}
-
-button {
-	padding: 0.8rem;
-	font-size: 1rem;
-	border: 1px solid $primary-color;
-	border-radius: 10px;
-	width: auto;
-	cursor: pointer;
-}
-
-button#apply-filters {
-	background-color: $primary-color;
-	color: $font-color-light;
-}
-
-button#apply-filters:hover {
-	background-color: $secondary-color;
-}
-
-button#reset-filters {
-	background-color: $background-color;
-	color: $primary-color;
-}
-
-button#reset-filters:hover {
-	background-color: lightgray;
-}
-// #endregion
-
+@import 'variables';
 // #region CATÁLOGO
 .cards {
 	display: flex;
@@ -97,13 +39,13 @@ button#reset-filters:hover {
 
 .card-image {
 	height: 100%;
-}
 
-.card-image img {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
-	vertical-align: middle;
+	img {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+		vertical-align: middle;
+	}
 }
 
 .card-btn {
@@ -135,6 +77,7 @@ button#reset-filters:hover {
 	clip-path: circle(0% at 100% 100%);
 
 	padding: 1rem;
+	gap: 1rem;
 	background: linear-gradient(
 		to bottom left,
 		$primary-color 30%,
@@ -178,3 +121,9 @@ button#reset-filters:hover {
 	clip-path: circle(75%);
 }
 // #endregion
+
+.message {
+	text-align: center;
+	font-size: 1rem;
+	padding: 2rem;
+}

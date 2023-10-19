@@ -247,6 +247,7 @@ button#reset-filters:hover {
   box-sizing: border-box;
   clip-path: circle(0% at 100% 100%);
   padding: 1rem;
+  gap: 1rem;
   background: linear-gradient(to bottom left, #5c2d8b 30%, #8c2a8d 70%);
   color: #ffffff;
   text-align: center; }
@@ -278,3 +279,8 @@ button#reset-filters:hover {
 .card:hover .card-content {
   transition: all 0.5s ease-in-out;
   clip-path: circle(75%); }
+
+.message {
+  text-align: center;
+  font-size: 1rem;
+  padding: 2rem; }

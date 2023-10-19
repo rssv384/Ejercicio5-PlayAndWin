@@ -66,13 +66,11 @@ Ejercicio5-PlayAndWin/    # Carpeta principal del proyecto
 │   ├── catalogo/      # Sección para el catálogo
 │   │    ├── index.html   # Página del catálogo
 │   │    ├── script.js    # JavaScript del catálogo
-│   │    └── styles.scss  # Estilos SCSS del catálogo
 │   │
 │   │
 │   ├── sales/            # Apartado de ventas
 │   │    ├── index.html   # Página de ventas
 │   │    ├── script.js    # JavaScript de la página de ventas
-│   │    └── styles.scss  # Estilos SCSS de la página de ventas
 │   │
 │   ├── shared/           # Carpeta con recursos compartidos
 │   │    └── utils.js     # JavaScript con funciones y utilidades compartidas

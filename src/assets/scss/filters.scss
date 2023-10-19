@@ -1,0 +1,58 @@
+@import 'variables';
+
+// #region FILTROS
+#filter-section {
+	background-color: $background-color;
+	padding: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	align-items: center;
+}
+
+input[type='text'],
+input[type='number'] {
+	flex-grow: 1;
+	min-width: 200px;
+	font-size: 1rem;
+	padding: 1rem;
+	border: 1px solid $primary-color;
+	border-radius: 10px;
+}
+
+input[type='text']:focus,
+input[type='text']:hover,
+input[type='text']:active,
+input[type='number']:focus,
+input[type='number']:hover,
+input[type='number']:active {
+	border: 1px solid $secondary-color;
+}
+
+button {
+	padding: 0.8rem;
+	font-size: 1rem;
+	border: 1px solid $primary-color;
+	border-radius: 10px;
+	width: auto;
+	cursor: pointer;
+}
+
+button#apply-filters {
+	background-color: $primary-color;
+	color: $font-color-light;
+}
+
+button#apply-filters:hover {
+	background-color: $secondary-color;
+}
+
+button#reset-filters {
+	background-color: $background-color;
+	color: $primary-color;
+}
+
+button#reset-filters:hover {
+	background-color: lightgray;
+}
+// #endregion
