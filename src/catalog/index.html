@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <nav class="fx-hide-xs">
+        <nav class="flex-hide-xs">
             <ul>
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="./index.html">Catálogo</a></li>
@@ -27,7 +27,9 @@
     </header>
 
     <main>
-        <h1>Catálogo</h1>
+        <div class="flex-row flex-content-center flex-align-items-center">
+            <h1>Catálogo</h1>
+        </div>
 
         <hr>
 
@@ -40,8 +42,8 @@
                 <input type="number" id="min-price" placeholder="Precio mínimo" class="filter-field" min="0">
                 <input type="number" id="max-price" placeholder="Precio máximo" class="filter-field" min="0">
                 <br>
-                <button type="submit" id="apply-filters">Aplicar Filtros</button>
-                <button type="reset" id="reset-filters">Restablecer</button>
+                <button type="submit" id="apply-filters" class="btn-color">Aplicar Filtros</button>
+                <button type="reset" id="reset-filters" class="btn-light">Restablecer</button>
             </div>
         </form>
 

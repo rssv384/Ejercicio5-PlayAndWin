@@ -1,6 +1,5 @@
 @import 'variables';
 
-// #region FILTROS
 #filter-section {
 	background-color: $background-color;
 	padding: 2rem;
@@ -10,23 +9,31 @@
 	align-items: center;
 }
 
-input[type='text'],
-input[type='number'] {
-	flex-grow: 1;
-	min-width: 200px;
+input,
+textarea,
+select {
 	font-size: 1rem;
 	padding: 1rem;
 	border: 1px solid $primary-color;
 	border-radius: 10px;
+
+	&:focus,
+	&:hover,
+	&:active {
+		border: 1px solid $secondary-color;
+	}
 }
 
-input[type='text']:focus,
-input[type='text']:hover,
-input[type='text']:active,
-input[type='number']:focus,
-input[type='number']:hover,
-input[type='number']:active {
-	border: 1px solid $secondary-color;
+input[type='text'],
+input[type='number'] {
+	flex-grow: 1;
+	min-width: 200px;
+}
+
+input[type='date'] {
+	width: 150px;
+	display: flex;
+	flex-direction: row;
 }
 
 button {
@@ -38,21 +45,31 @@ button {
 	cursor: pointer;
 }
 
-button#apply-filters {
+.btn-color {
 	background-color: $primary-color;
 	color: $font-color-light;
 }
 
-button#apply-filters:hover {
+.btn-color:hover {
 	background-color: $secondary-color;
 }
 
-button#reset-filters {
+.btn-light {
 	background-color: $background-color;
 	color: $primary-color;
 }
 
-button#reset-filters:hover {
+.btn-light:hover {
 	background-color: lightgray;
 }
-// #endregion
+
+.btn-transparent {
+	color: $font-color-light;
+	border: 1px solid $background-color;
+	background: transparent;
+}
+
+.btn-transparent:hover {
+	background-color: $background-color;
+	color: $primary-color;
+}

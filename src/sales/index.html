@@ -4,14 +4,20 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--- Favicon--->
 	<link rel="icon" href="/src/assets/img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css" />
+	<!--- CSS --->
+	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
+	<!--- JavaScript --->
+	<script src="../shared/utils.js" defer></script>
+	<script src="../shared/fetch-api.js" defer></script>
+	<script src="script.js" defer></script>
 	<title>Ventas | Play & Win</title>
 </head>
 
 <body>
 	<header>
-		<nav class="fx-hide-xs">
+		<nav class="flex-hide-xs">
 			<ul>
 				<li><a href="../index.html">Inicio</a></li>
 				<li><a href="../catalog/index.html">Catálogo</a></li>
@@ -19,6 +25,53 @@
 			</ul>
 		</nav>
 	</header>
+
+	<main>
+		<div class="flex-column flex-content-center flex-align-items-center">
+			<h1>Ventas</h1>
+			<button id="addSale" class="btn-color">+ Nueva Venta</button>
+		</div>
+
+		<hr>
+
+		<form id="filter-form">
+			<div id="filter-section">
+				<input type="text" id="title" placeholder="Título" class="filter-field" value="" list="videogames">
+				<datalist id="videogames">
+					<!--- Llenar datalist con los datos de la API --->
+				</datalist>
+				<input type="text" id="client" placeholder="Nombre del cliente" class="filter-field">
+				<input type="date" id="saleDate" class="filter-field">
+				<br>
+				<button type="submit" id="apply-filters" class="btn-color">Aplicar Filtros</button>
+				<button type="reset" id="reset-filters" class="btn-light">Restablecer</button>
+			</div>
+		</form>
+
+		<hr>
+
+		<!--- TABLA DE VENTAS --->
+
+		<div id="message" class="message">
+			<p>Por el momento, no se han consultado las ventas.</p>
+		</div>
+
+		<!--- MODAL --->
+		<div id="modal-background" class="modal-background">
+
+		</div>
+
+		<div id="modal" class="modal">
+
+			<h2>Nueva Venta</h2>
+
+			<form id="sale-form" class="form-section">
+
+			</form>
+
+		</div>
+	</main>
+
 </body>
 
 </html>

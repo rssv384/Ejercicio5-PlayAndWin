@@ -53,7 +53,7 @@ function displayCatalog(videogames) {
 							<p class="card-platform">${videogame.platform.join(' | ')}</p>
 							<p class="card-rating">${videogame.rating}<span class="star">&#9733;</span></p>
 							<p class="card-price">${formatCurrency(videogame.price)}</p>
-							<button class="card-btn">VER MÁS</button>
+							<button class="btn-transparent card-btn">VER MÁS</button>
 						</div>
 					</div>
 				`;
