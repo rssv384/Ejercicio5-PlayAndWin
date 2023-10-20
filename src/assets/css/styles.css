@@ -319,3 +319,41 @@ button#addSale {
   padding: 20px;
   border: 1px solid #5c2d8b;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+
+.table-container {
+  max-width: 100%;
+  overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+  font-size: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
+  table thead tr {
+    background-color: #5c2d8b;
+    color: #ffffff;
+    text-align: left; }
+    table thead tr th {
+      border: none;
+      font-size: 1.125rem;
+      padding: 2rem 1.25rem;
+      white-space: nowrap; }
+  table tbody tr {
+    border-bottom: none; }
+    table tbody tr:nth-of-type(even) {
+      background-color: #f2f2f2; }
+    table tbody tr:last-of-type {
+      border-bottom: 4px solid #5c2d8b; }
+    table tbody tr td {
+      padding: 1rem 1.25rem;
+      border: none;
+      white-space: wrap; }
+      table tbody tr td img {
+        max-width: 100px;
+        height: auto; }
+
+.message {
+  text-align: center;
+  font-size: 1rem;
+  padding: 2rem; }
