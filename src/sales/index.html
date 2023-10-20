@@ -29,23 +29,21 @@
 	<main>
 		<div class="flex-column flex-content-center flex-align-items-center">
 			<h1>Ventas</h1>
-			<button id="addSale" class="btn-color">+ Nueva Venta</button>
+			<button id="add-sale" class="btn-color">+ Nueva Venta</button>
 		</div>
 
 		<hr>
 
-		<form id="filter-form">
-			<div id="filter-section">
-				<input type="text" id="title" placeholder="Título" class="filter-field" value="" list="videogames">
-				<datalist id="videogames">
-					<!--- Llenar datalist con los datos de la API --->
-				</datalist>
-				<input type="text" id="client" placeholder="Nombre del cliente" class="filter-field">
-				<input type="date" id="saleDate" class="filter-field">
-				<br>
-				<button type="submit" id="apply-filters" class="btn-color">Aplicar Filtros</button>
-				<button type="reset" id="reset-filters" class="btn-light">Restablecer</button>
-			</div>
+		<form id="filter-form" class="filter-section">
+			<input type="text" id="title-filter" placeholder="Título" class="form-field" value=""
+				list="videogamesDataList" autocomplete="off">
+			<datalist id="videogamesDataList">
+				<!--- Llenar datalist con los datos de la API --->
+			</datalist>
+			<input type="text" id="client-filter" placeholder="Nombre del cliente" class="form-field">
+			<input type="date" id="date-filter" class="form-field">
+			<button type="submit" id="apply-filters" class="btn-color">Aplicar Filtros</button>
+			<button type="reset" id="reset-filters" class="btn-light">Restablecer</button>
 		</form>
 
 		<hr>
@@ -65,10 +63,37 @@
 
 			<h2>Nueva Venta</h2>
 
-			<form id="sale-form" class="form-section">
-
-			</form>
-
+			<div class="flex-row flex-content-center flex-align-items-center">
+				<div class="flex-content-center flex-align-items-center">
+					<form id="sale-form" class="form-section">
+						<input type="text" id="title" placeholder="Título" class="form-field" value=""
+							list="videogamesDataList" autocomplete="off">
+						<div class="flex-row flex-content-space-between">
+							<button id="add-item" class="btn-color-light">+ Agregar Item</button>
+							<button id="reset-items" class="btn-light">Limpiar items</button>
+						</div>
+						<input type="text" id="client" placeholder="Nombre del cliente" class="form-field" required>
+						<button type="submit" id="submit-sale" class="btn-color">Confirmar Compra</button>
+					</form>
+				</div>
+				<div class="sale-items-table-container flex-column flex-content-center flex-align-items-center">
+					<table id="new-sale-data-table">
+						<thead>
+							<tr>
+								<th>Item</th>
+								<th class="text-right">Importe</th>
+							</tr>
+						</thead>
+						<tbody id="sale-items-table-body">
+							<!-- Llenado dinámico de la tabla de la venta -->
+						</tbody>
+					</table>
+					<div class="flex-row flex-content-center flex-align-items-center">
+						<h3>Total:</h3>
+						<p id="sale-total" class="text-right">$ 0.00</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</main>
 
