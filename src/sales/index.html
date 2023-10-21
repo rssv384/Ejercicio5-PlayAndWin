@@ -8,16 +8,12 @@
 	<link rel="icon" href="/src/assets/img/favicon.ico" type="image/x-icon">
 	<!--- CSS --->
 	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
-	<!--- JavaScript --->
-	<script src="../shared/utils.js" defer></script>
-	<script src="../shared/fetch-api.js" defer></script>
-	<script src="script.js" defer></script>
 	<title>Ventas | Play & Win</title>
 </head>
 
 <body>
 	<header>
-		<nav class="flex-hide-xs">
+		<nav>
 			<ul>
 				<li><a href="../index.html">Inicio</a></li>
 				<li><a href="../catalog/index.html">Catálogo</a></li>
@@ -49,26 +45,26 @@
 		<hr>
 
 		<!--- TABLA DE VENTAS --->
+		<div class="table-container">
+			<table id="sales-data-table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Items</th>
+						<th>Nombre del Cliente</th>
+						<th>Fecha</th>
+						<th>Total</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="sales-data-table-body">
+					<!-- Llenado dinámico de la tabla mediante una API -->
+				</tbody>
+			</table>
+		</div>
 
 		<div id="message" class="message">
-			<p>Por el momento, no se han consultado las ventas.</p>
-		<div><table id="data-table">
-			<thead>
-			  <tr>
-				<th>ID</th>
-				<th>Items</th>
-				<th>Nombre del Cliente</th>
-				<th>Fecha</th>
-				<th>Total</th>
-				<th>ELIMINAR</th>
-				<th></th>
-			  </tr>
-			</thead>
-			<tbody id="data-table-body">
-			  <!-- Llenaremos la tabla con datos consumidos desde una api -->
-			</tbody>
-		  </table>
-	</div>
+			<p>No hay ventas para mostrar.</p>
 		</div>
 
 		<!--- MODAL --->
@@ -80,7 +76,7 @@
 
 			<h2>Nueva Venta</h2>
 
-			<div class="flex-row flex-content-center flex-align-items-center">
+			<div class="flex-row flex-content-center flex-align-items-center flex-column-xs">
 				<div class="flex-content-center flex-align-items-center">
 					<form id="sale-form" class="form-section">
 						<input type="text" id="title" placeholder="Título" class="form-field" value=""
@@ -93,7 +89,7 @@
 						<button type="submit" id="submit-sale" class="btn-color">Confirmar Compra</button>
 					</form>
 				</div>
-				<div class="sale-items-table-container flex-column flex-content-center flex-align-items-center">
+				<div class="table-container flex-column flex-content-center flex-align-items-center">
 					<table id="new-sale-data-table">
 						<thead>
 							<tr>
@@ -113,6 +109,10 @@
 			</div>
 		</div>
 	</main>
+	<!--- JavaScript --->
+	<script src="../shared/utils.js"></script>
+	<script src="../shared/fetch-api.js"></script>
+	<script src="script.js"></script>
 
 </body>
 

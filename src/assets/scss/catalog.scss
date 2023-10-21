@@ -6,14 +6,14 @@
 	justify-content: center;
 	list-style: none;
 	margin: 0;
-	padding: 0;
+	padding: 20px 30px;
 }
 
 .cards-item {
 	display: flex;
 	margin: 1rem;
 	border-radius: 10px;
-	box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.9);
+	box-shadow: $main-box-shadow;
 }
 
 @media (min-width: 768px) {

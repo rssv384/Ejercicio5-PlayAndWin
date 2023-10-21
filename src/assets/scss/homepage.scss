@@ -37,4 +37,22 @@
 	}
 }
 
+@media screen and (max-width: 768px) {
+	.home-banner {
+		padding: 2rem;
+
+		img {
+			height: 7rem;
+		}
+
+		h1 {
+			font-size: 7rem;
+		}
+
+		h2 {
+			font-size: 2rem;
+		}
+	}
+}
+
 /* #endregion */

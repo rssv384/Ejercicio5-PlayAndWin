@@ -1,6 +1,7 @@
 // #region GLOBAL VARIABLES
 const imagePath = `../assets/img/catalog/`;
 let catalogList = [];
+let salesList = [];
 // #endregion
 
 // #region DATA MODELS
@@ -8,11 +9,11 @@ let catalogList = [];
 // Definir Sale class
 class Sale {
 	constructor(id, items, clientName, date, total) {
-		this.id = id; // ID Venta
-		this.items = items; // Lista de videojuegos de la venta
-		this.clientName = clientName; // Nombre del cliente
-		this.date = date; // Fecha de la venta
-		this.total = total; // Importe total de la venta
+		this.id = id;
+		this.items = items;
+		this.clientName = clientName;
+		this.date = date;
+		this.total = total;
 	}
 }
 
@@ -45,7 +46,121 @@ function mapVideogameData(data) {
 
 //#endregion
 
-//#region MODAL
+// #region SALES TABLE VIEW
+function displaySalesView(sales) {
+	clearTable();
+
+	showLoadingMessage();
+
+	if (sales.length === 0) {
+		showNotFoundMessage();
+	} else {
+		hideMessage();
+		displaySalesTable(sales);
+	}
+}
+
+// Funcion que agrega los datos de los modelos de casas a la tabla.
+function displaySalesTable(sales) {
+	const tableBody = document.getElementById('sales-data-table-body');
+
+	sales.forEach((sale) => {
+		const row = document.createElement('tr');
+		console.log(sale.date);
+
+		row.innerHTML = `
+		<td>${sale.id}</td>
+		<td>${sale.items.join(', ')}</td>
+		<td>${sale.clientName}</td>
+		<td class="text-center">${sale.date.toLocaleDateString('en-MX')}</td>
+		<td class="text-right">${formatCurrency(sale.total)}</td>
+		<td class="text-center">
+		  <button class="btn-delete" data-sale-id="${sale.id}">Eliminar</button>
+		</td>
+	  `;
+
+		tableBody.appendChild(row);
+	});
+
+	initDeleteSaleButtonHandler();
+}
+
+// Funcion que limpia la tabla
+function clearTable() {
+	const tableBody = document.getElementById('sales-data-table-body');
+
+	tableBody.innerHTML = '';
+}
+
+// Funcion que muestra mensaje de carga
+function showLoadingMessage() {
+	const message = document.getElementById('message');
+
+	message.innerHTML = 'Cargando...';
+
+	message.style.display = 'block';
+}
+
+// Funcion que muestra mensaje de que no se encuentraron datos
+function showNotFoundMessage() {
+	const message = document.getElementById('message');
+
+	message.innerHTML = 'No se encontraron ventas con los filtros seleccionados.';
+
+	message.style.display = 'block';
+}
+
+// Funcion que oculta mensaje
+function hideMessage() {
+	const message = document.getElementById('message');
+
+	message.style.display = 'none';
+}
+// #endregion
+
+// #region FILTERS
+function initFilterButtonsHandler() {
+	document.getElementById('filter-form').addEventListener('submit', (event) => {
+		event.preventDefault();
+		filterSales();
+	});
+
+	document.getElementById('filter-form').addEventListener('reset', (event) => {
+		event.preventDefault();
+		resetSales();
+	});
+}
+
+// Limpiar filtros y restablecer los datos de la tabla de ventas
+function resetSales() {
+	document.getElementById('title-filter').value = '';
+	document.getElementById('client-filter').value = '';
+	document.getElementById('date-filter').value = '';
+	getSalesData();
+}
+
+// Filtrar ventas y actualizar datos de la tabla
+function filterSales() {
+	const title = document.getElementById('title-filter').value.toLowerCase();
+	const clientName = document
+		.getElementById('client-filter')
+		.value.toLowerCase();
+	const date = document.getElementById('date-filter').value;
+
+	const filteredSales = salesList.filter(
+		(sale) =>
+			(!title ||
+				sale.items.findIndex((item) => item.toLowerCase().includes(title)) >=
+					0) &&
+			(!clientName || sale.clientName.toLowerCase().includes(clientName)) &&
+			(!date || sale.date === date)
+	);
+
+	displaySalesView(filteredSales);
+}
+// #endregion
+
+//#region MODAL & DELETE SALE
 
 // Event Handlers para abrir/cerrar el modal, agregar/eliminar item de la venta
 // y confirmar ventar
@@ -77,6 +192,16 @@ function initAddSaleButtonsHandler() {
 	document.getElementById('sale-form').addEventListener('submit', (event) => {
 		event.preventDefault();
 		processNewSale();
+	});
+}
+
+// Función para eliminar ventas del historial
+function initDeleteSaleButtonHandler() {
+	document.querySelectorAll('.btn-delete').forEach((button) => {
+		button.addEventListener('click', () => {
+			const saleId = button.getAttribute('data-sale-id');
+			deleteSale(saleId);
+		});
 	});
 }
 
@@ -173,11 +298,19 @@ function populateDataList(catalogList) {
 
 // #region API USAGE
 // Cargar los datos necesarios del catálogo de videojuegos
-function loadVideogameData() {
+function getVideogameData() {
 	fetchAPI('catalog', 'GET').then((data) => {
 		// Mapear datos a objetos Videogame
 		catalogList = mapVideogameData(data);
 		populateDataList(catalogList);
+	});
+}
+
+// Cargar datos sobre ventas
+function getSalesData() {
+	fetchAPI('sales', 'GET').then((data) => {
+		salesList = mapSalesData(data);
+		displaySalesView(salesList);
 	});
 }
 
@@ -186,62 +319,31 @@ function submitSale(newSale) {
 	fetchAPI('sales', 'POST', newSale).then((newSale) => {
 		closeSaleModal();
 		//   Restablecer tabla de historial de ventas y filtros
-
+		resetSales();
 		// Mostrar mensaje de registro exitoso
 		window.alert(`Venta ${newSale.id} realizada con éxito.`);
 	});
 }
-// Agrega funcionalidad para mostrar detalles de la venta en una tabla
-function addItemToSale(videogame) {
-	const itemsTableBody = document.getElementById('sale-items-table-body');
-	const saleDetailsTableBody = document.getElementById('sale-details-table-body');
-  
-	const row = document.createElement('tr');
-  
-	row.innerHTML = `
-	  <td>${videogame.title}</td>
-	  <td class="text-right">${formatCurrency(videogame.price)}</td>
-	`;
-  
-	itemsTableBody.appendChild(row);
-  
-	// Actualizar importe total de venta
-	const importeTotal = document.getElementById('sale-total');
-	const currentTotal = Number(importeTotal.innerHTML.replace(/[^0-9\.]+/g, ''));
-	importeTotal.innerHTML = `${formatCurrency(currentTotal + videogame.price)}`;
-  
-	// Agregar detalles de venta
-	const saleDetailsRow = document.createElement('tr');
-	saleDetailsRow.innerHTML = `
-	  <td>${videogame.title}</td>
-	  <td class="text-right">${formatCurrency(videogame.price)}</td>
-	`;
-	saleDetailsTableBody.appendChild(saleDetailsRow);
-  
-	// Limpiar el campo del título del videojuego
-	document.getElementById('title').value = '';
-  }
-  
-  // Función que limpia el contenido de la tabla de items de la venta y el importe total
-  function clearSaleItems() {
-	// Limpiar tabla de items
-	const itemsTableBody = document.getElementById('sale-items-table-body');
-	itemsTableBody.innerHTML = '';
-  
-	// Limpiar tabla de detalles de venta
-	const saleDetailsTableBody = document.getElementById('sale-details-table-body');
-	saleDetailsTableBody.innerHTML = '';
-  
-	// Actualizar importe total
-	const importeTotal = document.getElementById('sale-total');
-	importeTotal.innerHTML = '$ 0.00';
-  }
-  
+
+// Eliminar venta
+function deleteSale(saleId) {
+	const confirmation = window.confirm(
+		`¿Desea eliminar la venta ${saleId}? No podrá deshacer la operación.`
+	);
+
+	if (confirmation) {
+		fetchAPI(`sales/${saleId}`, 'DELETE').then(() => {
+			resetSales();
+			window.alert(`La venta ${saleId} ha sido eliminada con éxito.`);
+		});
+	}
+}
 // #endregion
 
 //#region INIT FUNCIONALIDAD
 
 initAddSaleButtonsHandler();
-loadVideogameData();
+initFilterButtonsHandler();
+getVideogameData();
+getSalesData();
 //#endregion
-

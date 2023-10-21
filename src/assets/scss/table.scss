@@ -1,54 +1,47 @@
 @import './variables';
 
-
 .table-container {
-  max-width: 100%;
-  overflow-x: auto;
+	max-width: 100%;
+	overflow-x: auto;
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  white-space: nowrap;
-  font-size: 1rem;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  thead tr {
-    background-color: $primary-color;
-    color: $font-color-light;
-    text-align: left;
-    th {
-      border: none;
-      font-size: 1.125rem;
-      padding: 2rem 1.25rem;
-      white-space: nowrap;
-    }
-  }
-  tbody tr {
-    border-bottom: none;
+	width: 100%;
+	overflow-x: auto;
+	border-collapse: collapse;
+	white-space: nowrap;
+	font-size: 1rem;
 
-    &:nth-of-type(even) {
-      background-color: $background-color;
-    }
+	thead tr {
+		background-color: $primary-color;
+		color: $font-color-light;
+		text-align: center;
 
-    &:last-of-type {
-      border-bottom: 4px solid $primary-color;
-    }
+		th {
+			text-align: center;
+			border: 1px solid $background-color;
+			font-size: 1.125rem;
+			padding: 2rem 1.25rem;
+			white-space: nowrap;
+		}
+	}
 
-    td {
-      padding: 1rem 1.25rem;
-      border: none;
-      white-space: wrap;
+	tbody tr {
+		border-bottom: 1px solid $primary-color;
+		border-collapse: collapse;
 
-      img {
-        max-width: 100px;
-        height: auto;
-      }
-    }
-  }
+		&:nth-of-type(even) {
+			background-color: $background-color;
+		}
 
-}
-.message {
-  text-align: center;
-  font-size: 1rem;
-  padding: 2rem;
+		&:last-of-type {
+			border-bottom: 3px solid $primary-color;
+		}
+
+		td {
+			padding: 1rem 1.25rem;
+			border: none;
+			white-space: wrap;
+		}
+	}
 }

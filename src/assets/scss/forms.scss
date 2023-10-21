@@ -64,6 +64,12 @@ button {
 	cursor: pointer;
 }
 
+button#add-sale {
+	font-weight: 700;
+	font-size: 1.25rem;
+	margin: 0.5rem auto 2rem;
+}
+
 button#add-item {
 	margin-right: 1rem;
 }
@@ -108,6 +114,16 @@ button#reset-items {
 .btn-transparent:hover {
 	background-color: $background-color;
 	color: $primary-color;
+}
+
+.btn-delete {
+	color: red;
+	border: 1px solid red;
+	background: transparent;
+}
+
+.btn-delete:hover {
+	background-color: darken($background-color, 10);
 }
 
 #sale-form {

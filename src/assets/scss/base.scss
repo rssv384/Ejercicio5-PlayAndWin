@@ -4,6 +4,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	border: 0;
 }
 
 body {
@@ -17,14 +18,14 @@ body {
 main {
 	background-color: $background-color;
 	min-height: $workarea-min-height;
-	margin: 2rem 2rem;
+	padding-top: $header-height;
 }
 
 section {
 	display: block;
 	/* Section height = Viewport height - header height */
 	height: 100vh;
-	padding: 50px 80px;
+	padding: $header-height 0 0 0;
 }
 
 h1 {

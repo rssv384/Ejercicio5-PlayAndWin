@@ -1,8 +1,30 @@
 @media screen and (max-width: 768px) {
-	.fx-hide-xs {
-		display: none;
+	body {
+		font-size: 12px;
+	}
+
+	h1 {
+		font-size: 2rem;
+	}
+
+	h2 {
+		font-size: 1.5rem;
+	}
+
+	h3 {
+		font-size: 1.25rem;
+	}
+
+	nav {
+		font-size: 1rem;
+	}
+
+	.flex-column-xs {
+		display: flex;
+		flex-direction: column;
 	}
 }
+
 /* #region FLEX STYLES */
 .flex-row {
 	display: flex;
