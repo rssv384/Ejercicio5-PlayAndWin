@@ -191,7 +191,52 @@ function submitSale(newSale) {
 		window.alert(`Venta ${newSale.id} realizada con éxito.`);
 	});
 }
-
+// Agrega funcionalidad para mostrar detalles de la venta en una tabla
+function addItemToSale(videogame) {
+	const itemsTableBody = document.getElementById('sale-items-table-body');
+	const saleDetailsTableBody = document.getElementById('sale-details-table-body');
+  
+	const row = document.createElement('tr');
+  
+	row.innerHTML = `
+	  <td>${videogame.title}</td>
+	  <td class="text-right">${formatCurrency(videogame.price)}</td>
+	`;
+  
+	itemsTableBody.appendChild(row);
+  
+	// Actualizar importe total de venta
+	const importeTotal = document.getElementById('sale-total');
+	const currentTotal = Number(importeTotal.innerHTML.replace(/[^0-9\.]+/g, ''));
+	importeTotal.innerHTML = `${formatCurrency(currentTotal + videogame.price)}`;
+  
+	// Agregar detalles de venta
+	const saleDetailsRow = document.createElement('tr');
+	saleDetailsRow.innerHTML = `
+	  <td>${videogame.title}</td>
+	  <td class="text-right">${formatCurrency(videogame.price)}</td>
+	`;
+	saleDetailsTableBody.appendChild(saleDetailsRow);
+  
+	// Limpiar el campo del título del videojuego
+	document.getElementById('title').value = '';
+  }
+  
+  // Función que limpia el contenido de la tabla de items de la venta y el importe total
+  function clearSaleItems() {
+	// Limpiar tabla de items
+	const itemsTableBody = document.getElementById('sale-items-table-body');
+	itemsTableBody.innerHTML = '';
+  
+	// Limpiar tabla de detalles de venta
+	const saleDetailsTableBody = document.getElementById('sale-details-table-body');
+	saleDetailsTableBody.innerHTML = '';
+  
+	// Actualizar importe total
+	const importeTotal = document.getElementById('sale-total');
+	importeTotal.innerHTML = '$ 0.00';
+  }
+  
 // #endregion
 
 //#region INIT FUNCIONALIDAD
@@ -199,3 +244,4 @@ function submitSale(newSale) {
 initAddSaleButtonsHandler();
 loadVideogameData();
 //#endregion
+
