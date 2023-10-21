@@ -1,12 +1,30 @@
 @import 'variables';
 
-#filter-section {
+.filter-section {
 	background-color: $background-color;
-	padding: 2rem;
+	padding: 1.5rem;
+	border: none;
+	border: 1px solid darken($background-color, 10%);
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem;
 	align-items: center;
+	border-radius: 3px;
+}
+
+.form-section {
+	display: flex;
+	flex-direction: column;
+	width: 50vw;
+	background-color: $background-color;
+	padding: 1rem;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.form-field {
+	display: flex;
+	flex-direction: column;
 }
 
 input,
@@ -42,7 +60,16 @@ button {
 	border: 1px solid $primary-color;
 	border-radius: 10px;
 	width: auto;
+	height: fit-content;
 	cursor: pointer;
+}
+
+button#add-item {
+	margin-right: 1rem;
+}
+
+button#reset-items {
+	margin-left: 1rem;
 }
 
 .btn-color {
@@ -52,6 +79,15 @@ button {
 
 .btn-color:hover {
 	background-color: $secondary-color;
+}
+
+.btn-color-light {
+	background-color: $secondary-color;
+	color: $font-color-light;
+}
+
+.btn-color-light:hover {
+	background-color: darken($color: $secondary-color, $amount: 10);
 }
 
 .btn-light {
@@ -72,4 +108,9 @@ button {
 .btn-transparent:hover {
 	background-color: $background-color;
 	color: $primary-color;
+}
+
+#sale-form {
+	padding: 1rem;
+	width: 50%;
 }
